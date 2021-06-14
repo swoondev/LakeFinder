@@ -1,0 +1,35 @@
+<ul class="nav nav-pills">
+    <li class="active">
+      <a href="#">MN Lake Fish Finder</a>
+    </li>
+    <li><a href="#">...</a></li>
+    <li><a href="#">...</a></li>
+</ul>
+
+<select [(ngModel)]="speciesInput">
+    <option value="" disabled selected>Select a species</option>
+    <option *ngFor="let s of species" [ngValue]="s.Id">{{s.Species}}</option>
+</select>
+
+<select [(ngModel)]="countyInput">
+    <option value="" disabled selected>Select a county</option>
+    <option value="All" [ngValue]="0">All of MN</option>
+    <option *ngFor="let c of counties" [ngValue]="c.Id">{{c.County}}</option>
+</select>
+    
+    <button (click)="searchLakes(countyInput)">Search</button>
+
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let lake of lakeArray">
+        <th scope="row">{{lake.id}}</th>
+        <td>{{lake.name}}</td>
+        </tr>
+    </tbody>
+</table>
