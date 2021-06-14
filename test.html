@@ -1,0 +1,544 @@
+<html>
+    <style>
+        table {
+          border-collapse: collapse;
+        }
+        
+        table, td, th {
+          border: 1px solid black;
+        }
+        </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <p>I'd appreciate any donations, but definitely not necessary.
+        <br><a href="https://paypal.me/swoonme" target='blank'><img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" border="0" alt="PayPal Logo"></a>
+    </p> 
+    <label>Species Targeting:</label>
+    <select id="species">
+        <option value="BKT">Brook Trout</option>
+        <option value="BNT">Brown Trout</option>
+        <option value="BUB">Burbot</option>
+        <option value="BOF">Bowfin (dogfish)</option>
+        <option value="BLC">Black Crappie</option>
+        <option value="BLG">Bluegill</option>
+        <option value="BNM">Bluntnose Minnow</option>
+        <option value="BRB">Brown Bullhead</option>
+        <option value="CCF">Channel Catfish</option>
+        <option value="CHS">Chinook Salmon</option>
+        <option value="CAP">Common Carp</option>
+        <option value="LKS">Lake Sturgeon</option>
+        <option value="LAT">Lake Trout</option>
+        <option value="LKW">Lake Whitefish</option>
+        <option value="LMB">Largemouth Bass</option>
+        <option value="LGP">Logperch</option>>
+        <option value="MTS">Mottled Sculpin</option>
+        <option value="MUE|TME">Muskellunge</option>
+        <option value="NOP">Northern Pike</option>
+        <option value="PMK">Pumpkinseed</option>
+        <option value="RKB">Rock bass</option>
+        <option value="SMB">Smallmouth Bass</option>
+        <option value="SPT">Splake</option>
+        <option value="SPO">Spottail shiner</option>
+        <option value="PNK">Sunfish</option>
+        <option value="TLC">Tulibee</option>
+        <option value="WAE">Walleye</option>
+        <option value="WHB">White Bass</option>
+        <option value="WTS">White sucker</option>
+        <option value="YEB">yellow bullhead</option>
+        <option value="YEP">Yellow Perch</option> 
+    </select>
+    <br>
+    <label>County: </label>
+    <select id="countyFilter">
+        <option selected="selected" value="">Any County</option>
+        <option value="1">Aitkin</option>
+        <option value="2">Anoka</option>
+        <option value="3">Becker</option>
+        <option value="4">Beltrami</option>
+        <option value="5">Benton</option>
+        <option value="6">Big Stone</option>
+        <option value="7">Blue Earth</option>
+        <option value="8">Brown</option>
+        <option value="9">Carlton</option>
+        <option value="10">Carver</option>
+        <option value="11">Cass</option>
+        <option value="12">Chippewa</option>
+        <option value="13">Chisago</option>
+        <option value="14">Clay</option>
+        <option value="15">Clearwater</option>
+        <option value="16">Cook</option>
+        <option value="17">Cottonwood</option>
+        <option value="18">Crow Wing</option>
+        <option value="19">Dakota</option>
+        <option value="20">Dodge</option>
+        <option value="21">Douglas</option>
+        <option value="22">Faribault</option>
+        <option value="23">Fillmore</option>
+        <option value="24">Freeborn</option>
+        <option value="25">Goodhue</option>
+        <option value="26">Grant</option>
+        <option value="27">Hennepin</option>
+        <option value="28">Houston</option>
+        <option value="29">Hubbard</option>
+        <option value="30">Isanti</option>
+        <option value="31">Itasca</option>
+        <option value="32">Jackson</option>
+        <option value="33">Kanabec</option>
+        <option value="34">Kandiyohi</option>
+        <option value="35">Kittson</option>
+        <option value="36">Koochiching</option>
+        <option value="37">Lac Qui Parle</option>
+        <option value="38">Lake</option>
+        <option value="39">Lake of the Woods</option>
+        <option value="40">Le Sueur</option>
+        <option value="41">Lincoln</option>
+        <option value="42">Lyon</option>
+        <option value="44">Mahnomen</option>
+        <option value="45">Marshall</option>
+        <option value="46">Martin</option>
+        <option value="43">McLeod</option>
+        <option value="47">Meeker</option>
+        <option value="48">Mille Lacs</option>
+        <option value="49">Morrison</option>
+        <option value="50">Mower</option>
+        <option value="51">Murray</option>
+        <option value="52">Nicollet</option>
+        <option value="53">Nobles</option>
+        <option value="54">Norman</option>
+        <option value="55">Olmsted</option>
+        <option value="56">Otter Tail</option>
+        <option value="57">Pennington</option>
+        <option value="58">Pine</option>
+        <option value="59">Pipestone</option>
+        <option value="60">Polk</option>
+        <option value="61">Pope</option>
+        <option value="62">Ramsey</option>
+        <option value="63">Red Lake</option>
+        <option value="64">Redwood</option>
+        <option value="65">Renville</option>
+        <option value="66">Rice</option>
+        <option value="67">Rock</option>
+        <option value="68">Roseau</option>
+        <option value="70">Scott</option>
+        <option value="71">Sherburne</option>
+        <option value="72">Sibley</option>
+        <option value="73">Stearns</option>
+        <option value="74">Steele</option>
+        <option value="75">Stevens</option>
+        <option value="69">St. Louis</option>
+        <option value="76">Swift</option>
+        <option value="77">Todd</option>
+        <option value="78">Traverse</option>
+        <option value="79">Wabasha</option>
+        <option value="80">Wadena</option>
+        <option value="81">Waseca</option>
+        <option value="82">Washington</option>
+        <option value="83">Watonwan</option>
+        <option value="84">Wilkin</option>
+        <option value="85">Winona</option>
+        <option value="86">Wright</option>
+        <option value="87">Yellow Medicine</option>
+    </select>
+    <br>
+    <button onclick="showAdvancedsearch()"><label id="AdvancedSearchButton" >Show Advanced Search</label></button>
+    <div id="advancedsearch" style="visibility: hidden;">
+        <label>Minimum Weight(lbs): </label>
+        <input type="number" id="Size" value="0">
+        <label>This number represents the smallest size fish (weight-wise) that you want fish data on.</label>
+        <br>
+        <label>Min Majority of Fish Length:</label>
+        <select id="minLength">
+            <option value="0">0"</option>
+            <option value="1">6"</option>
+            <option value="2">8"</option>
+            <option value="3">10"</option>
+            <option value="4">12"</option>
+            <option value="5">15"</option>
+            <option value="6">20"</option>
+            <option value="7">25"</option>
+            <option value="8">30"</option>
+            <option value="9">35"</option>
+            <option value="10">40"</option>
+            <option value="11">45"</option>
+            <option value="12">50+"</option>
+        </select>
+        <label>This number represents what length species you want the majority of the fish species to </label>
+        <br>
+        <label>Min Catch Count: </label>
+        <input type="number" id="minCount" value="0">
+    </div>
+    <br>
+    <button onclick="retrieveLakesByCounties()">Search</button>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-lg-4">
+            <table id="myTable">
+                <tr>
+                    <th>Survey Date</th>
+                    <th>Lake</th>
+                    <th>County</th>
+                    <th>Average Weight</th>
+                    <th>Total Count</th>
+                    <th>View Fish Length Stats</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-lg-8" id="fishlength" style="display: none">
+            <h2>Length of Select Species Sampled - All Gear Combined</h2>
+            <div class="table-responsive">
+            <table cellpadding="1" cellspacing="0" width="100%" class="table table-striped">
+            <thead>
+            <tr>
+            <th style="border:none">&nbsp;</th>
+            <th class="center" colspan="14" style="border:none">Number of fish caught in each category (inches)</th>
+            </tr>
+            <tr>
+            <th>Species</th>
+            <th class="center">0-5</th>
+            <th class="center">6-7</th>
+            <th class="center">8-9</th>
+            <th class="center">10-11</th>
+            <th class="center">12-14</th>
+            <th class="center">15-19</th>
+            <th class="center">20-24</th>
+            <th class="center">25-29</th>
+            <th class="center">30-34</th>
+            <th class="center">35-39</th>
+            <th class="center">40-44</th>
+            <th class="center">45-49</th>
+            <th class="center">50+</th>
+            <th class="center">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><p id="speciesvalue"></p></td>
+            <td class="center"><p id="0-5"></p></td>
+            <td class="center"><p id="6-7"></p></td>
+            <td class="center"><p id="8-9"></p></td>
+            <td class="center"><p id="10-11"></td>
+            <td class="center"><p id="12-14"></p></td>
+            <td class="center"><p id="15-19"></p></td>
+            <td class="center"><p id="20-24"></p></td>
+            <td class="center"><p id="25-29"></p></td>
+            <td class="center"><p id="30-34"></p></td>
+            <td class="center"><p id="35-39"></p></td>
+            <td class="center"><p id="40-44"></p></td>
+            <td class="center"><p id="45-49"></p></td>
+            <td class="center"><p id="50-100"></p></td>
+            <td class="center"><p id="0-100"></p></td>
+            </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-lg-12">&nbsp;</div>
+
+    <div class="col-lg-12">
+        <label>Log:</label><p id="log"></p>
+        <p id="loading"></p>
+    </div>
+    
+
+    <script>
+
+        var lakefinder_api = "https://maps2.dnr.state.mn.us/cgi-bin/lakefinder_json.cgi?context=desktop&callback=?";
+        var lake_survey_api = "https://maps2.dnr.state.mn.us/cgi-bin/lakefinder/detail.cgi?type=lake_survey&callback=?";
+        var office_api = "https://maps1.dnr.state.mn.us/cgi-bin/offices.cgi";
+        var finaltable = [];
+        var species = $('#species').val();
+        
+
+        async function retrieveLakesByCounties() {
+            $("#myTable").find("tr:gt(0)").remove();
+            $("#fishlength").hide();
+            var lakesArray = [];
+            var countyArray = [];
+            var size = $('#Size').val();
+            var minCount = $('#minCount').val();
+            var countyFilter = $('#countyFilter').val();
+
+            finaltable = [];
+            species = $('#species').val();
+            
+            if (countyFilter != "") {
+                let promised = retrieveLakesByCounty(countyFilter);
+                await promised.done(function(data) {
+                    if (data.status != "OK") {
+                        console.log(i + " Error: " + data.message); 
+                    } else {
+                        $('#log').text("Retrieving all " + data.results.length + " lakes in " + data.results[0].county + ".");
+                        // console.log(data.results[0].county + " County Search returned " + data.results.length + " results.");
+                        countyArray.push(data.results.length);
+                        data.results.forEach(x => {
+                            lakesArray.push(x);
+                        });
+                    }
+                });
+            }
+            else{
+                let i = 1;
+                $('#log').text("Retrieving all lakes in Minnesota.");
+                while (i < 88) {
+                    let promised = retrieveLakesByCounty(i);
+                    await promised.done(function(data) {
+                        if (data.status != "OK") {
+                            console.log(i + " Error: " + data.message); 
+                        } else {
+                            $('#log').text("Retrieving all " + data.results.length + " lakes in " + data.results[0].county + ".");
+                            // console.log(data.results[0].county + " County Search returned " + data.results.length + " results.");
+                            countyArray.push(data.results.length);
+                            data.results.forEach(x => {
+                                lakesArray.push(x);
+                            });
+                        }
+                        i++;
+                    });
+                }
+            }
+            console.log(lakesArray);
+            finaltable = [];
+            let countiesLoaded = "";
+            var x = -1;
+            var z = 1;
+            var p = 1;
+            var zindex = 1;
+            var uindex = 0;
+            await asyncForEach(lakesArray, async (lake) => {
+                if(countiesLoaded.search(lake.county) == -1){
+                    x++;
+                    countiesLoaded = "Loading lakes for " + lake.county + " county:  " + (z) + "/" + countyArray[x] + " (" + parseFloat((z)/countyArray[x]*100).toFixed(1) + "%)";
+                    $("<p id='county" + x + "'>" + countiesLoaded + "</p>").insertAfter("#loading");
+                    z = 1;
+                }
+                else{
+                    countiesLoaded = "Loading lakes for " + lake.county + " county:  " + (z) + "/" + countyArray[x] + " (" + parseFloat((z)/countyArray[x]*100).toFixed(1) + "%)";
+                    let element = "county" + x;
+                    document.getElementById(element).innerHTML = countiesLoaded
+                }
+                loadtext = parseFloat((p/lakesArray.length)*100).toFixed(1);
+                $('#loading').text("Total Percentage of Lakes Scouted: " + loadtext + "%");
+                p++;
+                z++;
+                await lakesurvey(lake.id, species).done(async function(data) {
+                    var survey;
+                    var values;
+                    $('#log').text("Retrieving survey data for Lake " + lake.name + ".");
+                    if (data.status != "SUCCESS") {
+                        console.log("Error: " + data.message + ". Lake " + lake.name + " has no data");
+                        // $('#log').text("No Survey Data for Lake " + lake.name + ".");
+                    }else {
+                        // $('#log').text("Survey data found for Lake " + lake.name + ".");
+                        let lakeVal = data.result;
+                        survey = lakeVal.surveys.sort((a,b) => {
+                            return new Date(a.surveyDate) - new Date(b.surveyDate); 
+                        });
+                        survey = survey.filter(value => value.surveyType == "Standard Survey");
+                        let j = 1;
+                        while(survey[survey.length-j].fishCatchSummaries.length == 0){
+                            j++
+                        }
+                        survey = survey[survey.length-j];
+                        if(survey.narrative.search("real trophies") >-1 ){
+                            console.log("FOUND SURVEY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", survey);
+                        }
+                        values = survey.fishCatchSummaries.filter(fish => fish.species == species);
+                        if(values.length == 0){
+                            console.log("Lake "+ lake.name + " has no " + species);
+                            // $('#log').text("Lake " + lake.name + " has no " + species + ".");
+                            return false;
+                        }
+                        else{
+                            var avgw8val = 0.0;
+                            var totcnt = 0;
+                            var totw8 = 0.0;
+                            var fishlenarray = revealfishlengthstats(survey);
+                            var minLength = $("#minLength").val();
+                            let sumofsize = 0;
+                            for(let u = minLength; u < fishlenarray.length-2; u++){
+                                sumofsize += fishlenarray[u]
+                            }
+                            if(sumofsize/fishlenarray[fishlenarray.length-1] > .5){
+                                $('#log').text("Calculating average " + species + " size and statistics for Lake " + lake.name + ".");
+                                await asyncForEach(values, async (x) => {
+                                    avgw8val += parseFloat(parseFloat(x.averageWeight).toFixed(2))*x.totalCatch;
+                                    totcnt += x.totalCatch;
+                                    totw8 += parseFloat(x.totalWeight);
+                                })
+                                avgw8val = parseFloat(parseFloat(avgw8val/totcnt).toFixed(2));
+                                if(avgw8val >= size && totcnt >= minCount){
+                                    finaltable.push({lakeName: "Lake " + lake.name, county: lake.county, averagew8: parseFloat(avgw8val), totalcnt: totcnt, totalw8: totw8, lakeId: lake.id, survey: survey, fishlengths: revealfishlengthstats(survey)})
+                                    console.log(finaltable);
+                                    let table = document.getElementById("myTable");
+                                    let row = table.insertRow(-1);
+                                    let cell1 = row.insertCell(0);
+                                    let cell2 = row.insertCell(1);
+                                    let cell3 = row.insertCell(2);
+                                    let cell4 = row.insertCell(3);
+                                    let cell5 = row.insertCell(4);
+                                    let cell6 = row.insertCell(5);
+                                    cell1.innerHTML = survey.surveyDate;
+                                    cell2.innerHTML = "<a href='https://www.dnr.state.mn.us/lakefind/lake.html?id=" + lake.id + "' target='blank'>" + lake.name;
+                                    cell3.innerHTML = lake.county;
+                                    cell4.innerHTML = avgw8val;
+                                    cell5.innerHTML = totcnt;
+                                    cell6.innerHTML = "<button onclick='showfishstats(" + uindex + ")'>Details</button>";
+                                    zindex++;
+                                    uindex++;
+                                }
+                            }
+                        }
+                    }
+                })
+            }).then(async function() {
+                if(finaltable.length == 0){
+                    $('#log').text("Unfortunately there were no lakes that matched the criteria you searched for. :(");
+                }
+                else{
+                    $('#log').text("Search complete.");
+                }
+                $("#myTable").find("tr:gt(0)").remove();
+                var table = document.getElementById("myTable");
+                console.log(finaltable);
+                finaltable.sort((a,b) => {
+                    return b.averagew8 - a.averagew8
+                })
+                for(let i=0;i<finaltable.length;i++){
+                    var row = table.insertRow(-1);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    var cell4 = row.insertCell(3);
+                    var cell5 = row.insertCell(4);
+                    var cell6 = row.insertCell(5);
+                    cell1.innerHTML = finaltable[i].survey.surveyDate;
+                    cell2.innerHTML = "<a href='https://www.dnr.state.mn.us/lakefind/lake.html?id=" + finaltable[i].lakeId + "' target='blank'>" + finaltable[i].lakeName;
+                    cell3.innerHTML = finaltable[i].county;
+                    cell4.innerHTML = finaltable[i].averagew8;
+                    cell5.innerHTML = finaltable[i].totalcnt;
+                    cell6.innerHTML = "<button onclick='showfishstats(" + i + ")'>Details</button>";
+                }
+            })
+        }
+
+        function showfishstats(index) {
+            $("#speciesvalue").text(species);
+            getLengthCount(finaltable[index].survey, species, 0,5, true);
+            getLengthCount(finaltable[index].survey, species, 6, 7, true);
+            getLengthCount(finaltable[index].survey, species, 8, 9, true);
+            getLengthCount(finaltable[index].survey, species, 10, 11, true);
+            getLengthCount(finaltable[index].survey, species, 12, 14, true);
+            getLengthCount(finaltable[index].survey, species, 15, 19, true);
+            getLengthCount(finaltable[index].survey, species, 20, 24, true);
+            getLengthCount(finaltable[index].survey, species, 25, 29, true);
+            getLengthCount(finaltable[index].survey, species, 30, 34, true);
+            getLengthCount(finaltable[index].survey, species, 35, 39, true);
+            getLengthCount(finaltable[index].survey, species, 40, 44, true);
+            getLengthCount(finaltable[index].survey, species, 45, 49, true);
+            getLengthCount(finaltable[index].survey, species, 50, 100, true);
+            getLengthCount(finaltable[index].survey, species, 0, 100, true);
+            $("#fishlength").show();
+        }
+
+        function revealfishlengthstats(survey) {
+            let fishlen = [];
+            fishlen.push(getLengthCount(survey, species, 0, 5, false));
+            fishlen.push(getLengthCount(survey, species, 6, 7, false));
+            fishlen.push(getLengthCount(survey, species, 8, 9, false));
+            fishlen.push(getLengthCount(survey, species, 10, 11, false));
+            fishlen.push(getLengthCount(survey, species, 12, 14, false));
+            fishlen.push(getLengthCount(survey, species, 15, 19, false));
+            fishlen.push(getLengthCount(survey, species, 20, 24, false));
+            fishlen.push(getLengthCount(survey, species, 25, 29, false));
+            fishlen.push(getLengthCount(survey, species, 30, 34, false));
+            fishlen.push(getLengthCount(survey, species, 35, 39, false));
+            fishlen.push(getLengthCount(survey, species, 40, 44, false));
+            fishlen.push(getLengthCount(survey, species, 45, 49, false));
+            fishlen.push(getLengthCount(survey, species, 50, 100, false));
+            fishlen.push(getLengthCount(survey, species, 0, 100, false));
+            return fishlen;
+           
+        }
+
+        function retrieveLakesByCounty(i) {
+            return $.ajax({
+                url: lakefinder_api,
+                dataType: "jsonp",
+                async: false,
+                data: {
+                    name: '',
+                    county: i
+                },
+                jsonpCallback: 'foo',
+            })
+        }
+        
+        function search_lakes_by_id(id) {
+            return $.ajax({
+                url: lakefinder_api,
+                dataType: "jsonp",
+                async: false,
+                data: {
+                    id: id
+                },
+                jsonpCallback: 'foo',
+            });  
+        }
+
+        function lakesurvey(id, species, lakename, county) {
+            return $.ajax({
+                url: lake_survey_api,
+                dataType: "jsonp",
+                async: false,
+                data: {
+                    id: id
+                },
+                jsonpCallback: 'foo'
+            });
+        }
+
+        function getLengthCount(survey, species, min, max, show) {
+            var count = 0;
+            for (var i = 0; i < survey.lengths[species].fishCount.length; i++) {
+                if (survey.lengths[species].fishCount[i][0] >= min && survey.lengths[species].fishCount[i][0] <= max)
+                    count += survey.lengths[species].fishCount[i][1];
+            }
+            if(show){
+                let el = min + "-" + max;
+                document.getElementById(el).innerHTML = count;
+            }
+            return count;
+        }
+
+        async function asyncForEach(array, callback) {
+            for (let index = 0; index < array.length; index++) {
+                await callback(array[index], index, array);
+            }
+        }
+
+        function showAdvancedsearch(){
+            if(document.getElementById("advancedsearch").style.visibility == "hidden") {
+                document.getElementById("AdvancedSearchButton").innerHTML = "Hide advanced search"
+                document.getElementById("advancedsearch").style.visibility = "visible";
+            }
+            else{
+                document.getElementById("AdvancedSearchButton").innerHTML = "Show advanced search"
+                document.getElementById("advancedsearch").style.visibility = "hidden";
+                document.getElementById("Size").value = 0;
+                document.getElementById("minLength").value = 0;
+                document.getElementById("minCount").value = 0;
+            }
+            
+        }
+
+            
+    </script>
+
+</html>
