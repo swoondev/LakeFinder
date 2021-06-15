@@ -56,17 +56,12 @@ export class HomePageComponent implements OnInit {
   }
 
   async searchLakes(countyInput) {
-    //console.log(this.countyInput);
-    //console.log(this.speciesInput);
+    this.fishtable = [];
     if(countyInput == 0){
       for(let i=1;i<88;i++){
         await this.apiService.GetLakesByCounty(i).subscribe(lakes => {
-          //console.log(lakes);
           if(lakes.results.length != 0){
             lakes.results.forEach(element => {
-              // this.lakeArray.push(element);
-              // console.log(this.lakeArray);
-              //console.log(element.id)
               this.apiService.GetLakeData(element.id).subscribe(survey => {
                 if(survey.status == "SUCCESS" && survey.message == "Normal execution."){
                   let surveyData = survey.result.surveys;
@@ -79,13 +74,12 @@ export class HomePageComponent implements OnInit {
                   surveyData = surveyData.filter(x => x.surveyType == "Standard Survey")
                   let speciesdata = surveyData[surveyData.length-1].fishCatchSummaries;
                   speciesdata = speciesdata.filter(fish => fish.species == this.speciesInput);
-                  //console.log("speciesData", speciesdata);
                   if (speciesdata.length != 0) {
                     let fishlenarray = this.revealfishlengthstats(surveyData[surveyData.length-1]);
                     this.fishtable.push({name: element.name, speciesdata: speciesdata[speciesdata.length-1], fishlengths: fishlenarray})
-                    console.log("Lake:", element.name);
-                    console.log(fishlenarray);
-                    console.log(speciesdata[speciesdata.length-1]);
+                    // console.log("Lake:", element.name);
+                    // console.log(fishlenarray);
+                    // console.log(speciesdata[speciesdata.length-1]);
                   }
                 }
               })
@@ -99,7 +93,6 @@ export class HomePageComponent implements OnInit {
         if(lakes.results.length != 0){
           this.lakeArray = lakes.results
         }
-        //console.log(this.lakeArray)
         if(this.lakeArray.length != 0){
           this.lakeArray.forEach(lake => {
             this.apiService.GetLakeData(lake.id).subscribe(survey => {
@@ -114,7 +107,6 @@ export class HomePageComponent implements OnInit {
                 //surveyData = surveyData.filter(x => x.surveyType == "Standard Survey")
                 let speciesdata = surveyData[surveyData.length-1].fishCatchSummaries;
                 speciesdata = speciesdata.filter(fish => fish.species == this.speciesInput);
-                //console.log("speciesData", speciesdata);
                 if (speciesdata.length != 0) {
                   let fishlenarray = this.revealfishlengthstats(surveyData[surveyData.length-1]);
                   this.fishtable.push({name: lake.name, speciesdata: speciesdata[speciesdata.length-1], fishlengths: fishlenarray})
