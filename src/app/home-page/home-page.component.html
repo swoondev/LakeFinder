@@ -22,14 +22,42 @@
 <table class="table">
     <thead>
         <tr>
-        <th scope="col">ID</th>
         <th scope="col">Name</th>
+        <th scope="col">Average Weight</th>
+        <th scope="col">0-5"</th>
+        <th scope="col">6-7"</th>
+        <th scope="col">8-9"</th>
+        <th scope="col">10-11"</th>
+        <th scope="col">12-14"</th>
+        <th scope="col">15-19"</th>
+        <th scope="col">20-24"</th>
+        <th scope="col">25-29"</th>
+        <th scope="col">30-34"</th>
+        <th scope="col">35-39"</th>
+        <th scope="col">40-44"</th>
+        <th scope="col">45-49"</th>
+        <th scope="col">50-100"</th>
+        <th scope="col">Total</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let lake of lakeArray">
-        <th scope="row">{{lake.id}}</th>
-        <td>{{lake.name}}</td>
+        <tr *ngFor="let lake of fishtable">
+        <th scope="row">{{lake.name}}</th>
+        <td>{{lake.speciesdata.averageWeight}}</td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[0] !== 0">{{lake.fishlengths[0]}}</p><p *ngIf="lake.fishlengths[0] === 0">{{lake.fishlengths[0]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[1] !== 0">{{lake.fishlengths[1]}}</p><p *ngIf="lake.fishlengths[1] === 0">{{lake.fishlengths[1]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[2] !== 0">{{lake.fishlengths[2]}}</p><p *ngIf="lake.fishlengths[2] === 0">{{lake.fishlengths[2]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[3] !== 0">{{lake.fishlengths[3]}}</p><p *ngIf="lake.fishlengths[3] === 0">{{lake.fishlengths[3]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[4] !== 0">{{lake.fishlengths[4]}}</p><p *ngIf="lake.fishlengths[4] === 0">{{lake.fishlengths[4]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[5] !== 0">{{lake.fishlengths[5]}}</p><p *ngIf="lake.fishlengths[5] === 0">{{lake.fishlengths[5]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[6] !== 0">{{lake.fishlengths[6]}}</p><p *ngIf="lake.fishlengths[6] === 0">{{lake.fishlengths[6]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[7] !== 0">{{lake.fishlengths[7]}}</p><p *ngIf="lake.fishlengths[7] === 0">{{lake.fishlengths[7]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[8] !== 0">{{lake.fishlengths[8]}}</p><p *ngIf="lake.fishlengths[8] === 0">{{lake.fishlengths[8]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[9] !== 0">{{lake.fishlengths[9]}}</p><p *ngIf="lake.fishlengths[9] === 0">{{lake.fishlengths[9]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[10] !== 0">{{lake.fishlengths[10]}}</p><p *ngIf="lake.fishlengths[10] === 0">{{lake.fishlengths[10]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[11] !== 0">{{lake.fishlengths[11]}}</p><p *ngIf="lake.fishlengths[11] === 0">{{lake.fishlengths[11]}}</p></td>
+        <td><p style="background-color: #FFFF00;" *ngIf="lake.fishlengths[12] !== 0">{{lake.fishlengths[12]}}</p><p *ngIf="lake.fishlengths[12] === 0">{{lake.fishlengths[12]}}</p></td>
+        <td><b>{{lake.fishlengths[13]}}</b></td>
         </tr>
     </tbody>
 </table>
