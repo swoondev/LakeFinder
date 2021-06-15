@@ -28,6 +28,10 @@ export class HomePageComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
+  public GoToLake(lakeURL){
+    window.open(lakeURL,'_blank')
+  }
+
   private GetLengthCount(survey, species, min, max, show) {
     let count = 0;
     if(survey.lengths[species] != undefined){
@@ -106,8 +110,9 @@ export class HomePageComponent implements OnInit {
                           "ten": fishlenarray[10],
                           "eleven": fishlenarray[11],
                           "twelve": fishlenarray[12],
-                          "total": fishlenarray[13]
-                        }, surveyDate: surveyData[surveyData.length-1].surveyDate
+                          "total": fishlenarray[13],
+                        }, surveyDate: surveyData[surveyData.length-1].surveyDate,
+                        lakeURL: "https://www.dnr.state.mn.us/lakefind/lake.html?id=" + element.id
                       })
                       }
                     }
@@ -165,7 +170,8 @@ export class HomePageComponent implements OnInit {
                     "eleven": fishlenarray[11],
                     "twelve": fishlenarray[12],
                     "total": fishlenarray[13]
-                    }, surveyDate: surveyData[surveyData.length-1].surveyDate
+                    }, surveyDate: surveyData[surveyData.length-1].surveyDate,
+                    lakeURL: "https://www.dnr.state.mn.us/lakefind/lake.html?id=" + lake.id
                   })
                 };
               };
