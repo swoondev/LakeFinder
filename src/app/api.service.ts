@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable }  from 'rxjs/Observable';
 
 @Injectable({
@@ -15,15 +15,15 @@ export class ApiService {
 
   
 
-  public GetLakesByCounty(id) : Observable<any> {
+  public GetLakesByCounty(id) {
     return this.httpClient.get<any>(this.lakefinder_api, {
       params: new HttpParams().append("county", id)
-    });
+    }).toPromise()
   }
 
-  public GetLakeData(id): Observable<any> {
+  public GetLakeData(id){
     return this.httpClient.get<any>(this.lake_survey_api, {
-      params: new HttpParams().append("id", id).append("type", "lake_survey")
-    });
+      params: new HttpParams().append("type", "lake_survey").append("id", id)
+    }).toPromise();
   }
 }

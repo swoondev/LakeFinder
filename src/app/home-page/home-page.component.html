@@ -18,6 +18,8 @@
 </select>
     
     <button (click)="searchLakes(countyInput)">Search</button>
+    <h1>Searching {{currentcounty}} County {{lakeCount}}</h1>
+    <h2>{{countyCount}}</h2>
     <p>{{searchstatus}}</p>
 
 <table class="table" mdbTable class="z-depth-1">
@@ -27,22 +29,23 @@
             <mdb-icon fas icon="sort"></mdb-icon>
         </th> -->
         <th>#</th>
-        <th [mdbTableSort]="fishtable" sortBy="name">Name</th>
-        <th [mdbTableSort]="fishtable" sortBy="speciesdata.averageWeight">Average Weight</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.zero">0-5"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.one">6-7"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.two">8-9"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.three">10-11"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.four">12-14"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.five">15-19"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.six">20-24"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.seven">25-29"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.eight">30-34"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.nine">35-39"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.ten">40-44"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.eleven">45-49"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.twelve">50-100"</th>
-        <th [mdbTableSort]="fishtable" sortBy="fishlengths.total">Total</th>
+        <th [mdbTableSort]="fishtable" sortBy="name">Name <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="speciesdata.averageWeight">Average Weight <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="surveyDate">Survey Date <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.zero">0-5" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.one">6-7" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.two">8-9" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.three">10-11" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.four">12-14" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.five">15-19" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.six">20-24"  <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.seven">25-29" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.eight">30-34" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.nine">35-39" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.ten">40-44" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.eleven">45-49" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.twelve">50-100" <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.total">Total <mdb-icon fas icon="sort"></mdb-icon></th>
         </tr>
     </thead>
     <tbody>
@@ -50,6 +53,7 @@
         <th scope="row">{{i+1}}</th>
         <td>{{lake.name}}</td>
         <td>{{lake.speciesdata.averageWeight}}</td>
+        <td>{{lake.surveyDate | date: 'shortDate'}}</td>
         <td><p [ngClass]="{'fishcountlow': lake.fishlengths.zero < 20 && lake.fishlengths.zero > 0, 'fishcountmed': lake.fishlengths.zero < 50 && lake.fishlengths.zero > 20, 'fishcounthigh': lake.fishlengths.zero > 50 && lake.fishlengths.zero > 20}" >{{lake.fishlengths.zero}}</p></td>
         <td><p [ngClass]="{'fishcountlow': lake.fishlengths.one < 20 && lake.fishlengths.one > 0, 'fishcountmed': lake.fishlengths.one < 50 && lake.fishlengths.one> 20, 'fishcounthigh': lake.fishlengths.one > 50 && lake.fishlengths.one >20}" >{{lake.fishlengths.one}}</p></td>
         <td><p [ngClass]="{'fishcountlow': lake.fishlengths.two < 20 && lake.fishlengths.two > 0, 'fishcountmed': lake.fishlengths.two < 50 && lake.fishlengths.two > 20, 'fishcounthigh': lake.fishlengths.two > 50 && lake.fishlengths.two >20}" >{{lake.fishlengths.two}}</p></td>
@@ -63,7 +67,7 @@
         <td><p [ngClass]="{'fishcountlow': lake.fishlengths.ten < 20 && lake.fishlengths.ten > 0, 'fishcountmed': lake.fishlengths.ten < 50 && lake.fishlengths.ten > 20, 'fishcounthigh': lake.fishlengths.ten > 50 && lake.fishlengths.ten >20}" >{{lake.fishlengths.ten}}</p></td>
         <td><p [ngClass]="{'fishcountlow': lake.fishlengths.eleven < 20 && lake.fishlengths.eleven > 0, 'fishcountmed': lake.fishlengths.eleven < 50 && lake.fishlengths.eleven > 20, 'fishcounthigh': lake.fishlengths.eleven > 50 && lake.fishlengths.eleven >20}" >{{lake.fishlengths.eleven}}</p></td>
         <td><p [ngClass]="{'fishcountlow': lake.fishlengths.twelve < 20 && lake.fishlengths.twelve > 0, 'fishcountmed': lake.fishlengths.twelve < 50 && lake.fishlengths.twelve > 20, 'fishcounthigh': lake.fishlengths.twelve > 50 && lake.fishlengths.twelve >20}" >{{lake.fishlengths.twelve}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.total < 50, 'fishcountmed': lake.fishlengths.total < 100 && lake.fishlengths.total > 50, 'fishcounthigh': lake.fishlengths.total > 100 && lake.fishlengths.total >50}" >{{lake.fishlengths.total}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.total < 50 && lake.fishlengths.total > 0, 'fishcountmed': lake.fishlengths.total < 100 && lake.fishlengths.total > 50, 'fishcounthigh': lake.fishlengths.total > 100 && lake.fishlengths.total >50}" >{{lake.fishlengths.total}}</p></td>
         </tr>
     </tbody>
 </table>

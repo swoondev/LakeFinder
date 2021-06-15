@@ -22,16 +22,17 @@ export class HomePageComponent implements OnInit {
 
   fishtable: any[] = [];
   searchstatus: string;
+  currentcounty: string;
+  lakeCount: string;
+  countyCount: string;
 
   constructor(private apiService: ApiService) { }
 
   private GetLengthCount(survey, species, min, max, show) {
     let count = 0;
-    //console.log(survey.lengths[species]);
     if(survey.lengths[species] != undefined){
       for (let i = 0; i<survey.lengths[species].fishCount.length; i++){
         if (survey.lengths[species].fishCount[i][0] >= min && survey.lengths[species].fishCount[i][0] <= max){
-          //console.log(survey.lengths[species].fishCount)
           count += survey.lengths[species].fishCount[i][1];
         }
       }
@@ -65,69 +66,76 @@ export class HomePageComponent implements OnInit {
     //Search all of MN
     if(countyInput == 0){
       for(let i=1;i<88;i++){
-        await this.apiService.GetLakesByCounty(i).subscribe(lakes => {
+        this.countyCount = "(" + i+1 + "/88 counties)"
+        await this.apiService.GetLakesByCounty(i).then(lakes => {
+          console.log("Lake Data", lakes);
           this.searchstatus = "retrieving lakes..."
-          if(lakes.results.length != 0){
-            console.log(lakes.results);
-            lakes.results.forEach(element => {
-              this.apiService.GetLakeData(element.id).subscribe(survey => {
-                this.searchstatus = "retrieving data for Lake " + element.name
-                if(survey.status == "SUCCESS" && survey.message == "Normal execution."){
-                  let surveyData = survey.result.surveys;
-                  surveyData.forEach(data => {
-                    data.surveyDate = new Date(data.surveyDate);
-                  })
-                  surveyData.sort((a,b) => {
-                    return a.surveyDate-b.surveyDate;
-                  });
-                  surveyData = surveyData.filter(x => x.surveyType == "Standard Survey")
-                  let speciesdata = surveyData[surveyData.length-1].fishCatchSummaries;
-                  speciesdata = speciesdata.filter(fish => fish.species == this.speciesInput);
-                  if (speciesdata.length != 0) {
-                    let fishlenarray = this.revealfishlengthstats(surveyData[surveyData.length-1]);
-                    this.fishtable.push({name: element.name, speciesdata: speciesdata[speciesdata.length-1], fishlengths: 
-                      {
-                      "zero": fishlenarray[0], 
-                      "one": fishlenarray[1], 
-                      "two": fishlenarray[2], 
-                      "three": fishlenarray[3],
-                      "four": fishlenarray[4],
-                      "five": fishlenarray[5],
-                      "six": fishlenarray[6],
-                      "seven": fishlenarray[7],
-                      "eight": fishlenarray[8],
-                      "nine": fishlenarray[9],
-                      "ten": fishlenarray[10],
-                      "eleven": fishlenarray[11],
-                      "twelve": fishlenarray[12],
-                      "total:": fishlenarray[13]
-                    }})
-                    // console.log("Lake:", element.name);
-                    // console.log(fishlenarray);
-                    // console.log(speciesdata[speciesdata.length-1]);
+          if(lakes.results != null){
+            if(lakes.results.length != 0){
+              lakes.results.forEach(async (element, index) => {
+                this.currentcounty = element.county;
+                await this.apiService.GetLakeData(element.id).then(survey => {
+                  this.searchstatus = "retrieving data for Lake " + element.name
+                  this.lakeCount = "(" + index + "/" + (lakes.results.length-1) + " lakes)"
+                  if(survey.status == "SUCCESS" && survey.message == "Normal execution."){
+                    let surveyData = survey.result.surveys;
+                    surveyData.forEach(data => {
+                      data.surveyDate = new Date(data.surveyDate);
+                    })
+                    surveyData.sort((a,b) => {
+                      return a.surveyDate-b.surveyDate;
+                    });
+                    surveyData = surveyData.filter(x => x.surveyType == "Standard Survey")
+                    if(surveyData[surveyData.length-1] != undefined){
+                      let speciesdata = surveyData[surveyData.length-1].fishCatchSummaries;
+                      speciesdata = speciesdata.filter(fish => fish.species == this.speciesInput);
+                      if (speciesdata.length != 0) {
+                        let fishlenarray = this.revealfishlengthstats(surveyData[surveyData.length-1]);
+                        this.fishtable.push({name: element.name, speciesdata: speciesdata[speciesdata.length-1], fishlengths: 
+                          {
+                          "zero": fishlenarray[0], 
+                          "one": fishlenarray[1], 
+                          "two": fishlenarray[2], 
+                          "three": fishlenarray[3],
+                          "four": fishlenarray[4],
+                          "five": fishlenarray[5],
+                          "six": fishlenarray[6],
+                          "seven": fishlenarray[7],
+                          "eight": fishlenarray[8],
+                          "nine": fishlenarray[9],
+                          "ten": fishlenarray[10],
+                          "eleven": fishlenarray[11],
+                          "twelve": fishlenarray[12],
+                          "total": fishlenarray[13]
+                        }, surveyDate: surveyData[surveyData.length-1].surveyDate
+                      })
+                      }
+                    }
                   }
-                }
-                if(element.id == lakes.results[lakes.results.length-1].id){
-                  this.searchstatus = "Search complete!"
+                }).finally(() => {
+                  if(index == lakes.results.length-1) {
+                    this.searchstatus = "Search complete!"
                 }
               })
-            });
+              });
+            }
           }
         })
       }
     }
     //Search one county
     else{
-      await this.apiService.GetLakesByCounty(countyInput).subscribe(async lakes => {
+      await this.apiService.GetLakesByCounty(countyInput).then(async lakes => {
         this.searchstatus = "retrieving lakes..."
         if(lakes.results.length != 0){
           this.lakeArray = lakes.results
         }
         if(this.lakeArray.length != 0){
-          this.lakeArray.forEach((lake, index) => {
-            this.apiService.GetLakeData(lake.id).subscribe(survey => {
+          this.lakeArray.forEach(async (lake, index) => {
+            await this.apiService.GetLakeData(lake.id).then(survey => {
               this.searchstatus = "retrieving data for Lake " + lake.name
               if(survey.status == "SUCCESS" && survey.message == "Normal execution."){
+                this.lakeCount = "(" + index + "/" + (lakes.results.length-1) + " lakes)"
                 let surveyData = survey.result.surveys;
                 surveyData.forEach(data => {
                   data.surveyDate = new Date(data.surveyDate);
@@ -135,8 +143,9 @@ export class HomePageComponent implements OnInit {
                 surveyData.sort((a,b) => {
                   return a.surveyDate-b.surveyDate;
                 });
-                //surveyData = surveyData.filter(x => x.surveyType == "Standard Survey")
-                let speciesdata = surveyData[surveyData.length-1].fishCatchSummaries;
+                surveyData = surveyData.filter(x => x.surveyType == "Standard Survey")
+                if(surveyData[surveyData.length-1] != undefined){
+                  let speciesdata = surveyData[surveyData.length-1].fishCatchSummaries;
                 speciesdata = speciesdata.filter(fish => fish.species == this.speciesInput);
                 if (speciesdata.length != 0) {
                   let fishlenarray = this.revealfishlengthstats(surveyData[surveyData.length-1]);
@@ -156,23 +165,22 @@ export class HomePageComponent implements OnInit {
                     "eleven": fishlenarray[11],
                     "twelve": fishlenarray[12],
                     "total": fishlenarray[13]
-                    }
+                    }, surveyDate: surveyData[surveyData.length-1].surveyDate
                   })
-                  console.log("Lake:", lake.name);
-                  console.log(fishlenarray);
-                  console.log(speciesdata[speciesdata.length-1]);
                 };
               };
-              if(lake.id == this.lakeArray[this.lakeArray.length-1].id){
-                this.searchstatus = "Search complete!"
-              }
-            });
-          });
-        };
-      });
-    };
+            }
+          }).finally(() => {
+            if(index == this.lakeArray.length-1) {
+              this.searchstatus = "Search complete!"
+          }
+        })
+        });
+      };
+    })
+  };
 
-  }
+}
 
   ngOnInit(): void {
   }
