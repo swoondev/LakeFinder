@@ -11,6 +11,9 @@ import {staticcontent} from '../global/globals';
 })
 
 export class HomePageComponent implements OnInit {
+
+  headElements = ['#', 'Name', 'Average Weight', '0-5"', '6-7"', '8-9"', '10-11"', '12-14"', '15-19"', '20-24"', '25-29"', '30-34"', '35-39"', '40-44"', '45-49"', '50-100"', 'Total']
+
   countyInput: string;
   speciesInput: string;
   lakeArray: any[] = [];
@@ -59,6 +62,7 @@ export class HomePageComponent implements OnInit {
   async searchLakes(countyInput) {
     this.searchstatus = "Initializing search..."
     this.fishtable = [];
+    //Search all of MN
     if(countyInput == 0){
       for(let i=1;i<88;i++){
         await this.apiService.GetLakesByCounty(i).subscribe(lakes => {
@@ -81,7 +85,23 @@ export class HomePageComponent implements OnInit {
                   speciesdata = speciesdata.filter(fish => fish.species == this.speciesInput);
                   if (speciesdata.length != 0) {
                     let fishlenarray = this.revealfishlengthstats(surveyData[surveyData.length-1]);
-                    this.fishtable.push({name: element.name, speciesdata: speciesdata[speciesdata.length-1], fishlengths: fishlenarray})
+                    this.fishtable.push({name: element.name, speciesdata: speciesdata[speciesdata.length-1], fishlengths: 
+                      {
+                      "zero": fishlenarray[0], 
+                      "one": fishlenarray[1], 
+                      "two": fishlenarray[2], 
+                      "three": fishlenarray[3],
+                      "four": fishlenarray[4],
+                      "five": fishlenarray[5],
+                      "six": fishlenarray[6],
+                      "seven": fishlenarray[7],
+                      "eight": fishlenarray[8],
+                      "nine": fishlenarray[9],
+                      "ten": fishlenarray[10],
+                      "eleven": fishlenarray[11],
+                      "twelve": fishlenarray[12],
+                      "total:": fishlenarray[13]
+                    }})
                     // console.log("Lake:", element.name);
                     // console.log(fishlenarray);
                     // console.log(speciesdata[speciesdata.length-1]);
@@ -96,6 +116,7 @@ export class HomePageComponent implements OnInit {
         })
       }
     }
+    //Search one county
     else{
       await this.apiService.GetLakesByCounty(countyInput).subscribe(async lakes => {
         this.searchstatus = "retrieving lakes..."
@@ -119,7 +140,24 @@ export class HomePageComponent implements OnInit {
                 speciesdata = speciesdata.filter(fish => fish.species == this.speciesInput);
                 if (speciesdata.length != 0) {
                   let fishlenarray = this.revealfishlengthstats(surveyData[surveyData.length-1]);
-                  this.fishtable.push({name: lake.name, speciesdata: speciesdata[speciesdata.length-1], fishlengths: fishlenarray})
+                  this.fishtable.push({name: lake.name, speciesdata: speciesdata[speciesdata.length-1], fishlengths: 
+                    {
+                    "zero": fishlenarray[0], 
+                    "one": fishlenarray[1], 
+                    "two": fishlenarray[2], 
+                    "three": fishlenarray[3],
+                    "four": fishlenarray[4],
+                    "five": fishlenarray[5],
+                    "six": fishlenarray[6],
+                    "seven": fishlenarray[7],
+                    "eight": fishlenarray[8],
+                    "nine": fishlenarray[9],
+                    "ten": fishlenarray[10],
+                    "eleven": fishlenarray[11],
+                    "twelve": fishlenarray[12],
+                    "total": fishlenarray[13]
+                    }
+                  })
                   console.log("Lake:", lake.name);
                   console.log(fishlenarray);
                   console.log(speciesdata[speciesdata.length-1]);

@@ -20,47 +20,50 @@
     <button (click)="searchLakes(countyInput)">Search</button>
     <p>{{searchstatus}}</p>
 
-<table class="table">
+<table class="table" mdbTable class="z-depth-1">
     <thead>
         <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Average Weight</th>
-        <th scope="col">0-5"</th>
-        <th scope="col">6-7"</th>
-        <th scope="col">8-9"</th>
-        <th scope="col">10-11"</th>
-        <th scope="col">12-14"</th>
-        <th scope="col">15-19"</th>
-        <th scope="col">20-24"</th>
-        <th scope="col">25-29"</th>
-        <th scope="col">30-34"</th>
-        <th scope="col">35-39"</th>
-        <th scope="col">40-44"</th>
-        <th scope="col">45-49"</th>
-        <th scope="col">50-100"</th>
-        <th scope="col">Total</th>
+        <!-- <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="fishtable" [sortBy]="headElements[i]">{{head | titlecase}}
+            <mdb-icon fas icon="sort"></mdb-icon>
+        </th> -->
+        <th>#</th>
+        <th [mdbTableSort]="fishtable" sortBy="name">Name</th>
+        <th [mdbTableSort]="fishtable" sortBy="speciesdata.averageWeight">Average Weight</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.zero">0-5"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.one">6-7"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.two">8-9"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.three">10-11"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.four">12-14"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.five">15-19"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.six">20-24"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.seven">25-29"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.eight">30-34"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.nine">35-39"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.ten">40-44"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.eleven">45-49"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.twelve">50-100"</th>
+        <th [mdbTableSort]="fishtable" sortBy="fishlengths.total">Total</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let lake of fishtable; let i=index">
         <th scope="row">{{i+1}}</th>
-        <th scope="row">{{lake.name}}</th>
+        <td>{{lake.name}}</td>
         <td>{{lake.speciesdata.averageWeight}}</td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[0] < 20 && lake.fishlengths[0] > 0, 'fishcountmed': lake.fishlengths[0] < 50 && lake.fishlengths[0] > 20, 'fishcounthigh': lake.fishlengths[0] > 50 && lake.fishlengths[0] >20}" >{{lake.fishlengths[0]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[1] < 20 && lake.fishlengths[1] > 0, 'fishcountmed': lake.fishlengths[1] < 50 && lake.fishlengths[1] > 20, 'fishcounthigh': lake.fishlengths[1] > 50 && lake.fishlengths[1] >20}" >{{lake.fishlengths[1]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[2] < 20 && lake.fishlengths[2] > 0, 'fishcountmed': lake.fishlengths[2] < 50 && lake.fishlengths[2] > 20, 'fishcounthigh': lake.fishlengths[2] > 50 && lake.fishlengths[2] >20}" >{{lake.fishlengths[2]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[3] < 20 && lake.fishlengths[3] > 0, 'fishcountmed': lake.fishlengths[3] < 50 && lake.fishlengths[3] > 20, 'fishcounthigh': lake.fishlengths[3] > 50 && lake.fishlengths[3] >20}" >{{lake.fishlengths[3]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[4] < 20 && lake.fishlengths[4] > 0, 'fishcountmed': lake.fishlengths[4] < 50 && lake.fishlengths[4] > 20, 'fishcounthigh': lake.fishlengths[4] > 50 && lake.fishlengths[4] >20}" >{{lake.fishlengths[4]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[5] < 20 && lake.fishlengths[5] > 0, 'fishcountmed': lake.fishlengths[5] < 50 && lake.fishlengths[5] > 20, 'fishcounthigh': lake.fishlengths[5] > 50 && lake.fishlengths[5] >20}" >{{lake.fishlengths[5]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[6] < 20 && lake.fishlengths[6] > 0, 'fishcountmed': lake.fishlengths[6] < 50 && lake.fishlengths[6] > 20, 'fishcounthigh': lake.fishlengths[6] > 50 && lake.fishlengths[6] >20}" >{{lake.fishlengths[6]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[7] < 20 && lake.fishlengths[7] > 0, 'fishcountmed': lake.fishlengths[7] < 50 && lake.fishlengths[7] > 20, 'fishcounthigh': lake.fishlengths[7] > 50 && lake.fishlengths[7] >20}" >{{lake.fishlengths[7]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[8] < 20 && lake.fishlengths[8] > 0, 'fishcountmed': lake.fishlengths[8] < 50 && lake.fishlengths[8] > 20, 'fishcounthigh': lake.fishlengths[8] > 50 && lake.fishlengths[8] >20}" >{{lake.fishlengths[8]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[9] < 20 && lake.fishlengths[9] > 0, 'fishcountmed': lake.fishlengths[9] < 50 && lake.fishlengths[9] > 20, 'fishcounthigh': lake.fishlengths[9] > 50 && lake.fishlengths[9] >20}" >{{lake.fishlengths[9]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[10] < 20 && lake.fishlengths[10] > 0, 'fishcountmed': lake.fishlengths[10] < 50 && lake.fishlengths[10] > 20, 'fishcounthigh': lake.fishlengths[10] > 50 && lake.fishlengths[10] >20}" >{{lake.fishlengths[10]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[11] < 20 && lake.fishlengths[11] > 0, 'fishcountmed': lake.fishlengths[11] < 50 && lake.fishlengths[11] > 20, 'fishcounthigh': lake.fishlengths[11] > 50 && lake.fishlengths[11] >20}" >{{lake.fishlengths[11]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[12] < 20 && lake.fishlengths[12] > 0, 'fishcountmed': lake.fishlengths[12] < 50 && lake.fishlengths[12] > 20, 'fishcounthigh': lake.fishlengths[12] > 50 && lake.fishlengths[12] >20}" >{{lake.fishlengths[12]}}</p></td>
-        <td><p [ngClass]="{'fishcountlow': lake.fishlengths[13] < 50, 'fishcountmed': lake.fishlengths[13] < 100 && lake.fishlengths[13] > 50, 'fishcounthigh': lake.fishlengths[13] > 100 && lake.fishlengths[13] >50}" >{{lake.fishlengths[13]}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.zero < 20 && lake.fishlengths.zero > 0, 'fishcountmed': lake.fishlengths.zero < 50 && lake.fishlengths.zero > 20, 'fishcounthigh': lake.fishlengths.zero > 50 && lake.fishlengths.zero > 20}" >{{lake.fishlengths.zero}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.one < 20 && lake.fishlengths.one > 0, 'fishcountmed': lake.fishlengths.one < 50 && lake.fishlengths.one> 20, 'fishcounthigh': lake.fishlengths.one > 50 && lake.fishlengths.one >20}" >{{lake.fishlengths.one}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.two < 20 && lake.fishlengths.two > 0, 'fishcountmed': lake.fishlengths.two < 50 && lake.fishlengths.two > 20, 'fishcounthigh': lake.fishlengths.two > 50 && lake.fishlengths.two >20}" >{{lake.fishlengths.two}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.three < 20 && lake.fishlengthsthree > 0, 'fishcountmed': lake.fishlengths.three < 50 && lake.fishlengths.three > 20, 'fishcounthigh': lake.fishlengths.three > 50 && lake.fishlengths.three >20}" >{{lake.fishlengths.three}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.four < 20 && lake.fishlengths.four > 0, 'fishcountmed': lake.fishlengths.four < 50 && lake.fishlengths.four > 20, 'fishcounthigh': lake.fishlengths.four > 50 && lake.fishlengths.four >20}" >{{lake.fishlengths.four}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.five < 20 && lake.fishlengths.five > 0, 'fishcountmed': lake.fishlengths.five < 50 && lake.fishlengths.five > 20, 'fishcounthigh': lake.fishlengths.five > 50 && lake.fishlengths.five >20}" >{{lake.fishlengths.five}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.six < 20 && lake.fishlengths.six > 0, 'fishcountmed': lake.fishlengths.six < 50 && lake.fishlengths.six > 20, 'fishcounthigh': lake.fishlengths.six > 50 && lake.fishlengths.six >20}" >{{lake.fishlengths.six}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.seven < 20 && lake.fishlengths.seven > 0, 'fishcountmed': lake.fishlengths.seven < 50 && lake.fishlengths.seven > 20, 'fishcounthigh': lake.fishlengths.seven > 50 && lake.fishlengths.seven >20}" >{{lake.fishlengths.seven}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.eight < 20 && lake.fishlengths.eight > 0, 'fishcountmed': lake.fishlengths.eight < 50 && lake.fishlengths.eight > 20, 'fishcounthigh': lake.fishlengths.eight > 50 && lake.fishlengths.eight >20}" >{{lake.fishlengths.eight}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.nine < 20 && lake.fishlengths.nine > 0, 'fishcountmed': lake.fishlengths.nine < 50 && lake.fishlengths.nine > 20, 'fishcounthigh': lake.fishlengths.nine > 50 && lake.fishlengths.nine >20}" >{{lake.fishlengths.nine}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.ten < 20 && lake.fishlengths.ten > 0, 'fishcountmed': lake.fishlengths.ten < 50 && lake.fishlengths.ten > 20, 'fishcounthigh': lake.fishlengths.ten > 50 && lake.fishlengths.ten >20}" >{{lake.fishlengths.ten}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.eleven < 20 && lake.fishlengths.eleven > 0, 'fishcountmed': lake.fishlengths.eleven < 50 && lake.fishlengths.eleven > 20, 'fishcounthigh': lake.fishlengths.eleven > 50 && lake.fishlengths.eleven >20}" >{{lake.fishlengths.eleven}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.twelve < 20 && lake.fishlengths.twelve > 0, 'fishcountmed': lake.fishlengths.twelve < 50 && lake.fishlengths.twelve > 20, 'fishcounthigh': lake.fishlengths.twelve > 50 && lake.fishlengths.twelve >20}" >{{lake.fishlengths.twelve}}</p></td>
+        <td><p [ngClass]="{'fishcountlow': lake.fishlengths.total < 50, 'fishcountmed': lake.fishlengths.total < 100 && lake.fishlengths.total > 50, 'fishcounthigh': lake.fishlengths.total > 100 && lake.fishlengths.total >50}" >{{lake.fishlengths.total}}</p></td>
         </tr>
     </tbody>
 </table>
