@@ -66,7 +66,7 @@ export class HomePageComponent implements OnInit {
     //Search all of MN
     if(countyInput == 0){
       for(let i=1;i<88;i++){
-        this.countyCount = "(" + i+1 + "/88 counties)"
+        this.countyCount = "(" + i + "/87 counties)"
         await this.apiService.GetLakesByCounty(i).then(lakes => {
           console.log("Lake Data", lakes);
           this.searchstatus = "retrieving lakes..."

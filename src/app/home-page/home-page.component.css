@@ -1,11 +1,11 @@
 .fishcountlow {
-    background-color: green;
+    background-color: rgb(94, 206, 94);
 }
 
 .fishcountmed {
-    background-color: yellow;
+    background-color: rgb(223, 223, 132);
 }
 
 .fishcounthigh {
-    background-color: red;
+    background-color: rgb(230, 118, 118);
 }
