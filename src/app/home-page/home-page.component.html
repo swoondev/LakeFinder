@@ -1,25 +1,34 @@
 <ul class="nav nav-pills">
     <li class="active">
-      <a href="#">MN Lake Fish Finder</a>
+      <a href="#">MN Fish Lake Finder</a>
     </li>
-    <li><a href="#">...</a></li>
-    <li><a href="#">...</a></li>
+    <li><a href="#">Search by lake</a></li>
+    <li><a href="https://paypal.me/swoonme" target="_blank">Donate</a></li>
 </ul>
-<select [(ngModel)]="speciesInput">
-    <option value="" disabled selected>Select a species</option>
-    <option *ngFor="let s of species" [ngValue]="s.Id">{{s.Species}}</option>
-</select>
-
-<select [(ngModel)]="countyInput">
-    <option value="" disabled selected>Select a county</option>
-    <option value="All" [ngValue]="0">All of MN</option>
-    <option *ngFor="let c of counties" [ngValue]="c.Id">{{c.County}}</option>
-</select>
-    
-    <button (click)="searchLakes(countyInput)">Search</button>
-    <h1>Searching {{currentcounty}} County {{lakeCount}}</h1>
-    <h2>{{countyCount}}</h2>
-    <p>{{searchstatus}}</p>
+<br>
+<mat-form-field appearance="fill" >
+    <mat-label>Species</mat-label>
+    <mat-select [(ngModel)]="speciesInput">
+        <mat-option *ngFor="let s of species" [value]="s.Id">
+        {{s.Species}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+&nbsp;
+<mat-form-field appearance="fill" >
+    <mat-label>County</mat-label>
+    <mat-select [(ngModel)]="countyInput">
+        <mat-option [value]="0">All of MN</mat-option>
+        <mat-option *ngFor="let c of counties" [value]="c.Id">
+        {{c.County}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+&nbsp;
+<button type="button" mdbBtn color="primary" outline="true" (click)="searchLakes(countyInput)">Search</button>
+<h1>Searching {{currentcounty}} County {{lakeCount}}</h1>
+<h2>{{countyCount}}</h2>
+<p>{{searchstatus}}</p>
 
 <table class="table" mdbTable class="z-depth-1">
     <thead>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ApiService } from '../api.service';
+import {MatSelectModule} from '@angular/material/select';
 
 import {staticcontent} from '../global/globals';
 
