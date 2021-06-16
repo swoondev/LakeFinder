@@ -98,7 +98,7 @@ export class HomePageComponent implements OnInit {
               lakes.results = lakes.results.filter(x => 
                 x.fishSpecies.includes(this.species.find(x => x.Id == this.speciesInput).Species.toLowerCase())
               )
-              if(lakes.results.length = 0){
+              if(lakes.results.length == 0){
                 this.searchstatus = "No lakes in " + this.countyInput + "with given species."
               }
               else{
