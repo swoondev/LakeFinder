@@ -6,9 +6,10 @@ import { SearchByLakeFeaturesComponent } from './search-by-lake-features/search-
 
 
 const routes: Routes = [
+  {path: 'LakeFinder', component: HomePageComponent},
   {path: 'lakesearch', component: SearchByLakeComponent},
   {path: 'lakefeature', component: SearchByLakeFeaturesComponent},
-  {path: 'LakeFinder', component: HomePageComponent},
+  {path: '', component: HomePageComponent},
 ];
 
 @NgModule({
