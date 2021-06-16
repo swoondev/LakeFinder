@@ -27,7 +27,10 @@ export class HomePageComponent implements OnInit {
 
   constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
-  openDialog(narrative): void {
+  openDialog(narrative:string): void {
+    let searchregexp = new RegExp(this.species.find(x=>x.Id == this.speciesInput).Species,'gi');
+    console.log(searchregexp);
+    narrative = narrative.replace(searchregexp, "<b><mark>" + this.species.find(x=>x.Id == this.speciesInput).Species + "</b></mark>");
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '500px',
       height: '500px',
