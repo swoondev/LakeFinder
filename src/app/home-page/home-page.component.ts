@@ -145,7 +145,8 @@ export class HomePageComponent implements OnInit {
                               "twelve": fishlenarray[12],
                               "total": fishlenarray[13],
                             }, surveyDate: surveyData[surveyData.length-1].surveyDate,
-                            lakeid: element.id
+                            lakeid: element.id,
+                            narrative: surveyData[surveyData.length-1].narrative
                           })
                           }
                         }

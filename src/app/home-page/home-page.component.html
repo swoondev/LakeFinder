@@ -1,7 +1,7 @@
 <div class="col-lg-12">
     <ul class="nav nav-pills">
         <li class="active">
-          <a href="#">MN Fish Lake Finder</a>
+          <a href="/LakeFinder">MN Fish Lake Finder</a>
         </li>
         <li>
             <a routerLink="/lakefeature" routerLinkActive="active">Search by lake features</a>
@@ -69,7 +69,7 @@
         <tbody>
             <tr *ngFor="let lake of fishtable; let i=index">
             <th scope="row">{{i+1}}</th>
-            <td><a href="#" (click)="GoToLake(lake.lakeid)">{{lake.name}}</a>&nbsp;&nbsp; <a href="#"><img src="https://cdn.icon-icons.com/icons2/1364/PNG/512/boatonaramp_89129.png" width="15" height="15" (click)="GoToWaterAccess(lake.lakeid)" title="Water Access Site"></a>&nbsp;<a><i (click)="openDialog(lake.narrative)" class="far fa-file-alt fa-lg" title="Lake Summary"></i></a></td>
+            <td><a href="javascript:void(0)" (click)="GoToLake(lake.lakeid)">{{lake.name}}</a>&nbsp;&nbsp; <a href="javascript:void(0)"><img src="https://cdn.icon-icons.com/icons2/1364/PNG/512/boatonaramp_89129.png" width="15" height="15" (click)="GoToWaterAccess(lake.lakeid)" title="Water Access Site"></a>&nbsp;<a href="javascript:void(0)"><i (click)="openDialog(lake.narrative)" class="far fa-file-alt fa-lg" title="Lake Summary"></i></a></td>
             <td>{{lake.speciesdata.averageWeight}}</td>
             <td>{{lake.surveyDate | date: 'shortDate'}}</td>
             <td><p [ngClass]="{'fishcountlow': lake.fishlengths.zero < 20 && lake.fishlengths.zero > 0, 'fishcountmed': lake.fishlengths.zero < 50 && lake.fishlengths.zero > 20, 'fishcounthigh': lake.fishlengths.zero > 50 && lake.fishlengths.zero > 20}" >{{lake.fishlengths.zero}}</p></td>
