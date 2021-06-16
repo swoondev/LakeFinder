@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/animate.css/animate.css",
               "./node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
@@ -31,8 +32,7 @@
               "./node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
               "./node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
               "./node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
-              "./node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "./node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
@@ -135,7 +135,9 @@
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
-          "options": {"baseHref": "LakeFinder"}
+          "options": {
+            "baseHref": "LakeFinder"
+          }
         }
       }
     }
