@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { ApiService } from '../api.service';
 
 import {staticcontent} from '../global/globals';
@@ -11,6 +11,10 @@ import {staticcontent} from '../global/globals';
 
 export class HomePageComponent implements OnInit {
 
+  @HostListener('change') oninput() {
+    this.searchItems();
+  }
+
   headElements = ['#', 'Name', 'Average Weight', '0-5"', '6-7"', '8-9"', '10-11"', '12-14"', '15-19"', '20-24"', '25-29"', '30-34"', '35-39"', '40-44"', '45-49"', '50-100"', 'Total']
 
   countyInput: string;
@@ -18,14 +22,26 @@ export class HomePageComponent implements OnInit {
   lakeArray: any[] = [];
   counties: {County: string, Id: number}[] = staticcontent.counties;
   species: {Species: string, Id: string}[] = staticcontent.Species;
-
+  fishtablecopy : any[] = [];
   fishtable: any[] = [];
   searchstatus: string;
   currentcounty: string;
   lakeCount: string;
   countyCount: string;
+  searchText;
 
   constructor(private apiService: ApiService) { }
+
+  searchItems() {
+    if(this.searchText != ""){
+      this.fishtablecopy = this.fishtable;
+      this.fishtable = this.fishtable.filter(lake => lake.name.toLowerCase() == this.searchText);
+    }
+    else{
+      this.fishtable = this.fishtablecopy
+    }
+    
+  }
 
   public GoToLake(lakeid){
     window.open("https://www.dnr.state.mn.us/lakefind/lake.html?id=" + lakeid,'_blank');
