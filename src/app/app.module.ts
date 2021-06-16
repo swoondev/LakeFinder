@@ -12,11 +12,15 @@ import { ApiService } from './api.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchByLakeComponent } from './search-by-lake/search-by-lake.component';
+import { SearchByLakeFeaturesComponent } from './search-by-lake-features/search-by-lake-features.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    SearchByLakeComponent,
+    SearchByLakeFeaturesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { ApiService } from '../api.service';
-import {MatSelectModule} from '@angular/material/select';
 
 import {staticcontent} from '../global/globals';
 
@@ -29,8 +27,12 @@ export class HomePageComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
-  public GoToLake(lakeURL){
-    window.open(lakeURL,'_blank')
+  public GoToLake(lakeid){
+    window.open("https://www.dnr.state.mn.us/lakefind/lake.html?id=" + lakeid,'_blank');
+  }
+
+  public GoToWaterAccess(lakeid){
+    window.open("https://www.dnr.state.mn.us/lakefind/was/report.html?id=" + lakeid, '_blank');
   }
 
   private GetLengthCount(survey, species, min, max, show) {
@@ -74,7 +76,6 @@ export class HomePageComponent implements OnInit {
         this.countyCount = "(" + i + "/87 counties)"
         //Retrieve all lakes in specified county
         await this.apiService.GetLakesByCounty(i).then(lakes => {
-          console.log("Lake Data", lakes);
           this.searchstatus = "retrieving lakes..."
           if(lakes.results != null){
             if(lakes.results.length != 0){
@@ -125,7 +126,7 @@ export class HomePageComponent implements OnInit {
                             "twelve": fishlenarray[12],
                             "total": fishlenarray[13],
                           }, surveyDate: surveyData[surveyData.length-1].surveyDate,
-                          lakeURL: "https://www.dnr.state.mn.us/lakefind/lake.html?id=" + element.id
+                          lakeid: element.id
                         })
                         }
                       }
@@ -198,7 +199,7 @@ export class HomePageComponent implements OnInit {
                       "twelve": fishlenarray[12],
                       "total": fishlenarray[13]
                       }, surveyDate: surveyData[surveyData.length-1].surveyDate,
-                      lakeURL: "https://www.dnr.state.mn.us/lakefind/lake.html?id=" + lake.id
+                      lakeid: lake.id
                     })
                   }
                 };

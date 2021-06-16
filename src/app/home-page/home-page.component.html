@@ -2,8 +2,15 @@
     <li class="active">
       <a href="#">MN Fish Lake Finder</a>
     </li>
-    <li><a href="#">Search by lake</a></li>
-    <li><a href="https://paypal.me/swoonme" target="_blank">Donate</a></li>
+    <li>
+        <a routerLink="/lakefeature" routerLinkActive="active">Search by lake features</a>
+    </li>
+    <li>
+        <a routerLink="/lakesearch" routerLinkActive="active">Search by lake</a>
+    </li>
+    <li>
+        <a href="https://paypal.me/swoonme" target="_blank">Donate</a>
+    </li>
 </ul>
 <br>
 <mat-form-field appearance="fill" >
@@ -33,9 +40,6 @@
 <table class="table" mdbTable class="z-depth-1">
     <thead>
         <tr>
-        <!-- <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="fishtable" [sortBy]="headElements[i]">{{head | titlecase}}
-            <mdb-icon fas icon="sort"></mdb-icon>
-        </th> -->
         <th>#</th>
         <th [mdbTableSort]="fishtable" sortBy="name">Name <mdb-icon fas icon="sort"></mdb-icon></th>
         <th [mdbTableSort]="fishtable" sortBy="speciesdata.averageWeight">Average Weight <mdb-icon fas icon="sort"></mdb-icon></th>
@@ -59,7 +63,7 @@
     <tbody>
         <tr *ngFor="let lake of fishtable; let i=index">
         <th scope="row">{{i+1}}</th>
-        <td><a href="#" (click)="GoToLake(lake.lakeURL)">{{lake.name}}</a></td>
+        <td><a href="#" (click)="GoToLake(lake.lakeid)">{{lake.name}}</a>&nbsp;&nbsp; <a href="#"><img src="https://cdn.icon-icons.com/icons2/1364/PNG/512/boatonaramp_89129.png" width="15" height="15" (click)="GoToWaterAccess(lake.lakeid)" title="Water Access Site"></a></td>
         <td>{{lake.speciesdata.averageWeight}}</td>
         <td>{{lake.surveyDate | date: 'shortDate'}}</td>
         <td><p [ngClass]="{'fishcountlow': lake.fishlengths.zero < 20 && lake.fishlengths.zero > 0, 'fishcountmed': lake.fishlengths.zero < 50 && lake.fishlengths.zero > 20, 'fishcounthigh': lake.fishlengths.zero > 50 && lake.fishlengths.zero > 20}" >{{lake.fishlengths.zero}}</p></td>
@@ -79,3 +83,4 @@
         </tr>
     </tbody>
 </table>
+<router-outlet></router-outlet>

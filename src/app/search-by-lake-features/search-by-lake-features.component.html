@@ -1,0 +1,73 @@
+<ul class="nav nav-pills">
+    <li>
+      <a href="#">MN Fish Lake Finder</a>
+    </li>
+    <li class="active">
+        <a routerLink="/lakefeature" routerLinkActive="active">Search by lake features</a>
+    </li>
+    <li>
+        <a routerLink="/lakesearch" routerLinkActive="active">Search by lake</a>
+    </li>
+    <li>
+        <a href="https://paypal.me/swoonme" target="_blank">Donate</a>
+    </li>
+</ul>
+<br>
+<mat-form-field appearance="fill" >
+    <mat-label>Lake Size</mat-label>
+    <mat-select [(ngModel)]="LakeSize">
+        <mat-option [value]="[0,200]">
+        Small (0-200 acres)
+        </mat-option>
+        <mat-option [value]="[200,500]">
+            Medium (200-500 acres)
+        </mat-option>
+        <mat-option [value]="[500,1000]">
+            Large (500-1000 acres)
+        </mat-option>
+        <mat-option [value]="[1000,10,000]">
+            Extra Large (>1000 acres)
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+&nbsp;
+<mat-form-field appearance="fill" >
+    <mat-label>Depth</mat-label>
+    <mat-select [(ngModel)]="Depth">
+        <mat-option [value]="[0,15]">Shallow (up to 15 ft)</mat-option>
+        <mat-option [value]="[15,30]">Medium (up to 30 ft)</mat-option>
+        <mat-option [value]="[30,1000]">Deep (>30 ft)</mat-option>
+    </mat-select>
+</mat-form-field>
+&nbsp;
+<mat-form-field appearance="fill" >
+    <mat-label>Public Access</mat-label>
+    <mat-select [(ngModel)]="PublicAccess">
+        <mat-option [value]="1">Yes</mat-option>
+        <mat-option [value]="0">No</mat-option>
+    </mat-select>
+</mat-form-field>
+<button type="button" mdbBtn color="primary" outline="true" (click)="SearchLakes()">Search</button>
+
+<table class="table" mdbTable class="z-depth-1">
+    <thead>
+        <tr>
+        <th>#</th>
+        <th [mdbTableSort]="LakeTable" sortBy="name">Name <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="LakeTable" sortBy="morphology.area">Size (acres) <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="LakeTable" sortBy="morphology.littoral_area">Area of Water < 15ft (acres) <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="LakeTable" sortBy="morphology.max_depth">Max Depth (ft) <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="LakeTable" sortBy="resources.waterAccess">Public Access <mdb-icon fas icon="sort"></mdb-icon></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let lake of LakeTable; let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td><a href="javascript:void(0)" (click)="GoToLake(lake.id)">{{lake.name}}</a></td>
+            <th scope="row">{{lake.morphology.area}}</th>
+            <th scope="row">{{lake.morphology.littoral_area}}</th>
+            <th scope="row">{{lake.morphology.max_depth}}</th>
+            <th scope="row"><a href="javascript:void(0)"><img src="https://cdn.icon-icons.com/icons2/1364/PNG/512/boatonaramp_89129.png" width="15" height="15" (click)="GoToWaterAccess(lake.id)" title="Water Access Site"></a></th>
+        </tr>
+    </tbody>
+</table>

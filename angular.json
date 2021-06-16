@@ -132,6 +132,10 @@
               "devServerTarget": "lake-finder:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {"baseHref": "LakeFinder"}
         }
       }
     }
