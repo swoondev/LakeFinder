@@ -71,7 +71,7 @@ export class HomePageComponent implements OnInit {
               //Get Lake Survey Data
               await this.apiService.GetLakeData(element.id).then(survey => {
                 this.searchstatus = "retrieving data for Lake " + element.name
-                this.lakeCount = "(" + index + "/" + (lakes.results.length) + " lakes)"
+                this.lakeCount = "(" + index + "/" + (lakes.results.length-1) + " lakes)"
                 if(survey.status == "SUCCESS" && survey.message == "Normal execution."){
                   let surveyData = survey.result.surveys;
                   //Sort Surveys by Survey Date
