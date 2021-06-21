@@ -84,7 +84,7 @@ export class HomePageComponent implements OnInit {
                   //Only use standard surveys
                   surveyData = surveyData.filter(x => x.surveyType == "Standard Survey")
                   if(surveyData[surveyData.length-1] != undefined){
-                    console.log("Survey data", surveyData[surveyData.length-1]);
+                    //console.log("Survey data", surveyData[surveyData.length-1]);
                     let speciesdata = surveyData[surveyData.length-1].fishCatchSummaries;
                     //retrieve catch summaries for specific species
                     speciesdata = speciesdata.filter(fish => fish.species == this.speciesInput);
