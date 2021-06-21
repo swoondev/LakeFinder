@@ -56,11 +56,12 @@ export class HomePageComponent implements OnInit {
       this.searchstatus = "retrieving lakes..."
       if(lakes.results != null){
         if(lakes.results.length != 0){
+          //console.log("Lake data before filter:", lakes.results);
           //Filter lakes for only lakes w/ specified species
           lakes.results = lakes.results.filter(x => 
             x.fishSpecies.includes(this.species.find(x => x.Id == this.speciesInput).Species.toLowerCase())
           )
-          console.log("Lake data", lakes.results);
+          //console.log("Lake data", lakes.results);
           if(lakes.results.length == 0){
             this.searchstatus = "No lakes in " + this.countyInput + "with given species."
           }
@@ -70,7 +71,7 @@ export class HomePageComponent implements OnInit {
               //Get Lake Survey Data
               await this.apiService.GetLakeData(element.id).then(survey => {
                 this.searchstatus = "retrieving data for Lake " + element.name
-                this.lakeCount = "(" + index + "/" + (lakes.results.length-1) + " lakes)"
+                this.lakeCount = "(" + index + "/" + (lakes.results.length) + " lakes)"
                 if(survey.status == "SUCCESS" && survey.message == "Normal execution."){
                   let surveyData = survey.result.surveys;
                   //Sort Surveys by Survey Date
@@ -129,7 +130,7 @@ export class HomePageComponent implements OnInit {
     })
   }
 
-  private GetLengthCount(survey, species, min, max, show) {
+  private GetLengthCount(survey, species, min, max) {
     let count = 0;
     if(survey.lengths[species] != undefined){
       for (let i = 0; i<survey.lengths[species].fishCount.length; i++){
@@ -144,20 +145,20 @@ export class HomePageComponent implements OnInit {
 
   private revealfishlengthstats(survey){
     let fishlen = [];
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 0,5,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 6,7,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 8,9,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 10,11,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 12,14,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 15,19,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 20,24,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 25,29,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 30,34,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 35,39,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 40,44,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 45,49,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 50,100,false));
-    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 0,100,false));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 0,5));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 6,7));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 8,9));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 10,11));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 12,14));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 15,19));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 20,24));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 25,29));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 30,34));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 35,39));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 40,44));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 45,49));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 50,100));
+    fishlen.push(this.GetLengthCount(survey, this.speciesInput, 0,100));
     return fishlen;
   }
 
