@@ -12,6 +12,7 @@ export const staticcontent = {
         {Species: "Channel Catfish", Id: "CCF"},
         {Species: "Chinook Salmon", Id: "CHS"},
         {Species: "Common Carp", Id: "CAP"},
+        {Species: "Golden Shiner", Id: "GOS"},
         {Species: "Lake Sturgeon", Id: "LKS"},
         {Species: "Lake Trout", Id: "LAT"},
         {Species: "Lake Whitefish", Id: "LKW"},
